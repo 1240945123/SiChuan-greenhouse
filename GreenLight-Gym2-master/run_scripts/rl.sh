@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Disable wandb online mode to avoid network issues
+export WANDB_MODE=disabled
+
 # Run the experiment manager with command line arguments
 python gl_gym/RL/experiment_manager.py \
     --project AgriControl \
