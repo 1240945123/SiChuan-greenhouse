@@ -111,12 +111,12 @@ def load_env_params(env_id: str, path: str) -> Tuple[Dict, Dict, Dict]:
     return env_base_params, env_specific_params
 
 def load_sweep_config(path: str, env_id: str, algorithm: str) -> Dict[str, Any]:
-    with open(join(path, algorithm + ".yml"), "r") as f:
+    with open(join(path, algorithm + ".yml"), "r", encoding='utf-8') as f:
         sweep_config = yaml.load(f, Loader=yaml.FullLoader)
     return sweep_config[env_id]
 
 def loadParameters(env_id: str, path: str, filename: str, algorithm: Optional[str] = None):
-    with open(join(path, filename), "r") as f:
+    with open(join(path, filename), "r", encoding='utf-8') as f:
         params = yaml.load(f, Loader=yaml.FullLoader)
     
     if env_id != "GreenLightEnv":

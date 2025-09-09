@@ -106,17 +106,20 @@ def compute_cumulative_metrics(data_dict):
 
     # Process each noise level's data
     for noise_level, data in data_dict.items():
-        # Add a penalty column that sums all violations
-        if all(col in data.columns for col in ['temp_violation', 'co2_violation', 'rh_violation']):
-            data['Penalty'] = data['temp_violation'] + data['co2_violation'] + data['rh_violation']
-        # Group by episode and compute cumsum within each episode
-        for col in columns_to_sum:
-            if col in data.columns:
-                data[f'cumsum {col}'] = data.groupby('episode')[col].cumsum()
+        if isinstance(data, pd.DataFrame):
+            # Add a penalty column that sums all violations
+            if all(col in data.columns for col in ['temp_violation', 'co2_violation', 'rh_violation']):
+                data['Penalty'] = data['temp_violation'] + data['co2_violation'] + data['rh_violation']
+            # Group by episode and compute cumsum within each episode
+            for col in columns_to_sum:
+                if col in data.columns:
+                    data[f'cumsum {col}'] = data.groupby('episode')[col].cumsum()
 
     # Create final rewards dataframe with columns for mean and std
     final_rewards = pd.DataFrame(index=data_dict.keys())
     for noise_level, data in data_dict.items():
+        if not isinstance(data, pd.DataFrame):
+            continue
         for col in columns_to_sum:
             if f'cumsum {col}' in data.columns:
                 # Get the last value for each episode

@@ -9,7 +9,7 @@ import pandas as pd
 from scipy.interpolate import PchipInterpolator
 
 def load_model_hyperparams(algorithm: str, env_id: str) -> Dict[str, Any]:
-    with open(join("gl_gym/configs/agents/", algorithm + ".yml"), "r") as f:
+    with open(join("gl_gym/configs/agents/", algorithm + ".yml"), "r", encoding='utf-8') as f:
         params = yaml.load(f, Loader=yaml.FullLoader)
     model_hyperparams = params[env_id]
     return model_hyperparams
@@ -24,7 +24,7 @@ def load_env_params(env_id: str, path: str) -> Tuple[Dict, Dict]:
         env_id (str): the environment id
         path (str): the path to the yaml file
     '''
-    with open(join(path, env_id + ".yml"), "r") as f:
+    with open(join(path, env_id + ".yml"), "r", encoding='utf-8') as f:
         params = yaml.load(f, Loader=yaml.FullLoader)
     if env_id != "GreenLightEnv":
         env_specific_params = params[env_id]

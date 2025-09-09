@@ -51,7 +51,7 @@ if __name__ == "__main__":
         save_dir = f"data/{args.project}/{args.mode}/rb_baseline/{args.uncertainty_scale}/"
         n_sims = 30
     else:
-        save_dir = f"data/{args.project}/{args.mode}/{args.algorithm}/"
+        save_dir = f"data/{args.project}/{args.mode}/rb_baseline/"
         n_sims = 1
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)

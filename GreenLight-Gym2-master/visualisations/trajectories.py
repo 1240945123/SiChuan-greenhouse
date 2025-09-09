@@ -79,7 +79,7 @@ if __name__ == "__main__":
     parser.add_argument("--project", type=str, default="AgriControl", help="Wandb project name")
     parser.add_argument("--mode", type=str, choices=["deterministic", "stochastic"], required=True, help="Simulation mode")
     parser.add_argument("--ppo_name", type=str, required=True, help="Name of the ppo model to visualize")
-    parser.add_argument("--sac_name", type=str, required=True, help="Name of the sac model to visualize")
+    parser.add_argument("--sac_name", type=str, required=False, help="Name of the sac model to visualize")
     parser.add_argument("--growth_year", type=str, required=True, help="Growth year to visualize")
     parser.add_argument("--start_day", type=str, required=True, help="Start day of the year to visualize")
     parser.add_argument("--location", type=str, required=True, help="location to visualize")
